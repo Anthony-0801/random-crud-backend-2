@@ -1,9 +1,7 @@
-import { calculateTotalPrice, Product } from "./cart";
+import { createServer } from "./server";
 
-const cart: Product[] = [
-  { id: 1, name: "Apple", price: 10.0, quantity: 2 },
-  { id: 2, name: "Banana", price: 15.0, quantity: 1 },
-  { id: 3, name: "Cherry", price: 5.0, quantity: 3 },
-];
+const server = createServer();
 
-console.log("Total Price:", calculateTotalPrice(cart));
+server.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});

@@ -8,7 +8,7 @@
     "build": "tsc",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "dev": "dotenv -- tsc-watch --onsuccess \"node dist/index.js\""
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "Anthony A. Cabulang",
@@ -17,7 +17,10 @@
   "devDependencies": {
     "@eslint/js": "^9.29.0",
     "@tsconfig/node22": "^22.0.2",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^24.0.3",
     "dotenv-cli": "^8.0.0",
     "eslint": "^9.29.0",
@@ -28,8 +31,15 @@
     "jest": "^30.0.0",
     "prettier": "^3.5.3",
     "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
     "tsc-watch": "^7.1.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10"
   }
 }
