@@ -8,7 +8,7 @@
     "build": "tsc",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "dev": "nodemon"
+    "dev": "dotenv -- nodemon"
   },
   "keywords": [],
   "author": "Anthony A. Cabulang",
