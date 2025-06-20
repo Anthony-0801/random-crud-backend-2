@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          String     @id @default(cuid())
+  user_id     String     @db.VarChar(36)
+  project_id  String?
+  name        String
+  description String?    @db.Text
+  dueDate     DateTime?  @db.Date
+  completedOn DateTime?  @db.DateTime()
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  project     Project?   @relation(fields: [project_id], references: [id])
+
+
+  @@index([user_id]) // Index for faster lookups by user_id
+  @@map("tasks") // Maps the model to the "tasks" table in the database
+}
+
+model Project {
+  id          String     @id @default(cuid())
+  user_id     String     @db.VarChar(36)
+  name        String
+  description String?    @db.Text
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  tasks       Task[]     
+
+  @@index([user_id]) // Index for faster lookups by user_id
+  @@map("projects") // Maps the model to the "projects" table in the database
+}
