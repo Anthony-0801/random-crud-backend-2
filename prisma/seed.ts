@@ -7,7 +7,7 @@ function capitalizeFirstLetter(word: string): string {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-const userIds = Array.from({ length: 3 }, () => faker.string.uuid());
+const userIds = ["google-oauth2|113741891674067498133"];
 
 async function main() {
   for (const userId of userIds) {
