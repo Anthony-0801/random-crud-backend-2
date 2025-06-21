@@ -10,7 +10,7 @@ export const listTasks = async (req: Request, res: Response) => {
 export const getTask = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const task = await prisma.task.findUnique({
     where: { id: req.params.id },
