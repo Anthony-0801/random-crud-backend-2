@@ -6,13 +6,14 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
+    "start": "dotenv -- node dist/index.js",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
     "prisma:generate": "prisma generate",
     "migration:create": "prisma migrate dev --create-only",
     "migrate": "prisma migrate deploy",
     "db:seed": "prisma db seed",
-    "dev": "dotenv -- nodemon"
+    "dev": "dotenv -- tsc-watch --onSuccess \"node dist/index.js\""
   },
   "keywords": [],
   "author": "Anthony A. Cabulang",
@@ -26,6 +27,7 @@
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/module-alias": "^2.0.4",
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.0.3",
     "dotenv-cli": "^8.0.0",
@@ -38,7 +40,6 @@
     "prettier": "^3.5.3",
     "prisma": "^6.10.1",
     "ts-jest": "^29.4.0",
-    "ts-node": "^10.9.2",
     "tsc-watch": "^7.1.1",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.34.0"
@@ -50,12 +51,24 @@
     "express-oauth2-jwt-bearer": "^1.6.1",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "morgan": "^1.10.0",
-    "nodemon": "^3.1.10",
     "winston": "^3.17.0",
     "winston-daily-rotate-file": "^5.0.0"
   },
   "prisma": {
     "seed": "npx ts-node prisma/seed.ts"
+  },
+  "_moduleAliases": {
+    "@": "dist",
+    "@src": "src",
+    "@prisma": "prisma",
+    "@config": "src/config",
+    "@controllers": "src/controllers",
+    "@middlewares": "src/middlewares",
+    "@routes": "src/routes",
+    "@errors": "src/errors",
+    "@tests": "tests",
+    "@data": "src/data"
   }
 }

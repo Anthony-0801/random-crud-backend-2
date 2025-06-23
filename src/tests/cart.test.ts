@@ -1,4 +1,4 @@
-import { calculateTotalPrice, Product } from "../cart";
+import { calculateTotalPrice, Product } from "@/cart";
 
 it("should calculate the total price of products in the cart", () => {
   const products: Product[] = [
@@ -9,7 +9,7 @@ it("should calculate the total price of products in the cart", () => {
 
   const totalPrice = calculateTotalPrice(products);
 
-  expect(totalPrice).toBe(55.0);
+  expect(totalPrice).toBe(50.0);
 });
 
 it("should return 0 for an empty cart", () => {

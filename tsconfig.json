@@ -3,14 +3,21 @@
     "compilerOptions": {
         "outDir": "./dist",
         "rootDir": "./src",
-        //"module": "ESNext",
-        //"moduleResolution": "NodeNext",
         "target": "ES2022",
         "lib": ["ES2022", "DOM"],
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@config/*": ["src/config/*"],
+            "@middlewares/*": ["src/middlewares/*"],
+            "@data/*": ["src/data/*"],
+            "@errors/*": ["src/errors/*"],
+            "@tests/*": ["src/tests/*"]
+        }
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules"],

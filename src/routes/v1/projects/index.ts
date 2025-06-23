@@ -4,7 +4,7 @@ import {
   getProject,
   listProjectTasks,
 } from "./projectsController";
-import authenticateUser from "../../../middleware/authenticate-user";
+import authenticateUser from "../../../middlewares/authenticate-user";
 
 const projects: Router = express.Router();
 

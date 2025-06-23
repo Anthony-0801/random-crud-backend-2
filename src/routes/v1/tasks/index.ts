@@ -1,7 +1,7 @@
 import express, { Router } from "express";
 import { listTasks, getTask, createTask, updateTask } from "./tasksController";
-import authenticateUser from "../../../middleware/authenticate-user";
-import validateRequest from "../../../middleware/validate-request";
+import authenticateUser from "../../../middlewares/authenticate-user";
+import validateRequest from "../../../middlewares/validate-request";
 import {
   createTaskSchema,
   updateTaskSchema,

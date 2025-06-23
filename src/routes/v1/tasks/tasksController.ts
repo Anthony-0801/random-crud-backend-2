@@ -59,3 +59,22 @@ export const updateTask = async (req: Request, res: Response) => {
 
   res.status(200).json({ task });
 };
+
+export const deleteTask = async (req: Request, res: Response) => {
+  const task = await prisma.task.delete({
+    where: {
+      id: req.params.id,
+      user_id: req.auth?.payload.sub, // Assuming the user ID is stored in the JWT payload
+    },
+  });
+
+  if (!task) {
+    throw new EntityNotFoundError({
+      message: `Task with id ${req.params.id} not found`,
+      statusCode: 404,
+      code: "ERROR_ENTITY_NOT_FOUND",
+    });
+  }
+
+  res.status(204).send();
+};
