@@ -1,8 +1,15 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import EntityNotFoundError from "../../../errors/EntityNotFoundError";
 import prisma from "../../../prisma-client";
+import logger from "../../../logger";
 
 export const listTasks = async (req: Request, res: Response) => {
+  logger.debug("Requesting tasks");
+  logger
+    .child({
+      logMetadata: `User ID: ${req.auth?.payload.sub}`, // Assuming the user ID is stored in the JWT payload
+    })
+    .debug(" is requesting tasks");
   const tasks = await prisma.task.findMany({
     where: {
       user_id: req.auth?.payload.sub, // Assuming the user ID is stored in the JWT payload
@@ -11,11 +18,7 @@ export const listTasks = async (req: Request, res: Response) => {
   res.status(200).json({ tasks });
 };
 
-export const getTask = async (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
+export const getTask = async (req: Request, res: Response) => {
   const task = await prisma.task.findUnique({
     where: {
       id: req.params.id,
