@@ -3,6 +3,7 @@ import config from "../config";
 import { getErrorMessage } from "../utils";
 import CustomError from "../errors/CustomError";
 import { UnauthorizedError } from "express-oauth2-jwt-bearer";
+import Joi from "joi";
 
 export default function errorHandler(
   error: unknown,
@@ -12,6 +13,20 @@ export default function errorHandler(
 ) {
   if (res.headersSent || config.debug) {
     next(error);
+    return;
+  }
+
+  if (Joi.isError(error)) {
+    const validationError: ValidationError = {
+      error: {
+        message: "Validation failed",
+        code: "ERROR_VALIDATION_FAILED",
+        errors: error.details.map((detail) => ({
+          message: detail.message,
+        })),
+      },
+    };
+    res.status(422).json(validationError);
     return;
   }
 
