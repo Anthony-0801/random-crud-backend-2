@@ -23,6 +23,7 @@ export default [
     rules: {
       "typescript-eslint/no-unused-vars": "off",
       "typescript-no-empty-object-type": "off",
+      "typescript-eslint/no-explicit-any": "off",
       "prettier/prettier": ["error", { endofLine: "auto" }],
     },
   },
